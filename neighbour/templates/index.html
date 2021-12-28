@@ -1,0 +1,140 @@
+{% extends 'base.html'%} {% load bootstrap4 %} {% load staticfiles %} {{form.media}}
+{{ block.super }}
+
+{% block content %} 
+
+	<h3 class="text-right">
+			{% if user.profile.neighbourhood %}
+			  I belong to {{user.profile.neighbourhood}}
+			{% else %}
+			I don't belong to any hood
+			{% endif %}
+			</h3>
+    <div class="card" style="opacity: 0.5;padding: 10px; color: rgb(19, 17, 17)">
+            
+            <h2 class="text-center">Hoodwatch/h2>
+            
+        </div>
+                <div class="container">
+                
+                        <div class="col-md-3 col-sm-3 col-xs-6"> <a href="/create" class="btn btn-sm animated-button victoria-two">Add hood</a> </div>
+<div class="row">
+   {% for hood in hood %}
+   <div class="col-md-4">
+       <br>
+      <div class="card border-secondary">
+       <div class="card-body" style="background-color:#e9f0f5;">            
+            <h4  class="card-title">Hood: {{hood.name }}</h4>
+            <div class="text-center">
+
+                <img src="{{hood.image.url}}" id="img" style="height:200px; width: 280px;">
+            </div>
+              <h6 class="card-title">Location: {{hood.location | upper}}</h6>
+			  <h5 class="card-title">Occupants: {{hood.occupants | upper}}</h5> 
+	
+		   <a href="/hood/{{hood.id}}/{{hood.name}}"><button type="button" class="btn btn-outline-primary btn-sm">Join</button> </a> 
+		   <div class="text-right">
+			<a href="/profiles/{{hood.user.id}}/{{hood.user.username}}"><em> #hoodby{{hood.user.username }} </em></a>
+
+		   </div>
+            </div>
+        </div>
+        </div>
+        
+    {% endfor %}
+</div>
+</div>
+    <style>
+    
+    @media screen and (max-width: 1280px) {
+  img{
+      width: 100px;
+  }
+    }
+  a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: rgb(3, 0, 0);
+	font-size:14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	border-radius: 0;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+a.animated-button:link:after, a.animated-button:visited:after {
+	content: "";
+	position: absolute;
+	height: 0%;
+	left: 50%;
+	top: 50%;
+	width: 150%;
+	z-index: -1;
+	-webkit-transition: all 0.75s ease 0s;
+	-moz-transition: all 0.75s ease 0s;
+	-o-transition: all 0.75s ease 0s;
+	transition: all 0.75s ease 0s;
+}
+a.animated-button:link:hover, a.animated-button:visited:hover {
+	color: rgb(0, 0, 0);
+	text-shadow: none;
+}
+a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+	height: 450%;
+}
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: rgb(247, 240, 240);
+	font-size:14px;
+	border-radius: 0;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+/* Victoria Buttons */
+a.animated-button.victoria-one {
+	border: 2px solid #21072e;
+}
+a.animated-button.victoria-one:after {
+	background: #490c35;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+}
+a.animated-button.victoria-two {
+	border: 2px solid rgb(2, 0, 0);
+}
+a.animated-button.victoria-two:after {
+	background: rgb(99, 18, 99);
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(25deg);
+}
+
+
+
+    </style>
+    {% endblock %}
