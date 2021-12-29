@@ -1,0 +1,168 @@
+{% extends 'base.html'%}
+{% load bootstrap4 %} {% load staticfiles %} {{form.media}}
+{{ block.super }}
+
+
+ 
+{% block content %}
+
+
+<div class="container">
+    <div class="text-left">
+      <p>  Police dept:{{hood.police_dept}}</p>
+      <p>  Health dept:{{hood.health_dept}}</p>
+    </div>
+<div class="text-center">
+       
+    <div class="col-md-3 col-sm-3 col-xs-6"> <a href="/biz" class="btn btn-sm animated-button victoria-two">Add Business</a> </div>
+   <H1> Businesses in  {{hood.name}}</H1>
+   <em><strong>(You can change your hood via your profile)</strong></em>
+</div>
+    <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+        {% for biz in bizna %}
+       <div class="col-md-4">
+            <br>
+            
+            <div class="card border-secondary">
+                <div class="card-body" style="background-color:#e9f0f5;">            
+                        <h4  class="card-title"> {{biz.name }}</h4>
+                      <h5>  {{biz.description }}</h5>
+                        <p>{{biz.email }}</p>
+                        
+					</div>
+				<small class="text-right">Created by:<a href="/profiles/{{biz.user.id}}">{{biz.user.username }}</a></small>
+                </div>
+              
+            </div>
+                    {% endfor %}
+                </div>
+                </div>
+                <div class="col-md-4">
+                        <div class="text-center">
+							<h1>Posts</h1>
+							<strong><p>N/B:You only post where you belong</p></strong>
+                            {% for post in posts %}
+                           <div class="card-header">
+                                <p class="text-left">
+										<a href="/profiles/{{post.user.id}}/{{post.user.username}}">    <img src="{{post.user.profile.pro_photo.url}}" alt="Avatar" class="img-responsive" style="border-radius:70%;width: 50px; height:40px;">  {{post.user.username }} </a>
+                                </p>
+                                <div class="card-footer">
+
+                                    {{post.post}}
+                                </div>
+                            </div>
+                       
+                            {% endfor %}
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    Add post
+                                   </button>
+							<div class="collapse" id="collapseExample">
+								<form action="{%url 'post' %}" method="post">
+									{%csrf_token%} 
+									{% bootstrap_form post_form %}
+									<input type="submit" class="btn btn-success btn-lg" value="Post">
+								</form>
+								</div>
+							</div>
+                    </div>
+        </div>
+
+</div>
+    <style>
+    
+    @media screen and (max-width: 1280px) {
+  #img{
+      width: 100px;
+  }
+ 
+}
+
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: rgb(3, 0, 0);
+	font-size:14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	border-radius: 0;
+	text-shadow: 0 0 1px rgba(78, 235, 17, 0.2), 0 1px 0 rgba(11, 20, 153, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+a.animated-button:link:after, a.animated-button:visited:after {
+	content: "";
+	position: absolute;
+	height: 0%;
+	left: 50%;
+	top: 50%;
+	width: 150%;
+	z-index: -1;
+	-webkit-transition: all 0.75s ease 0s;
+	-moz-transition: all 0.75s ease 0s;
+	-o-transition: all 0.75s ease 0s;
+	transition: all 0.75s ease 0s;
+}
+a.animated-button:link:hover, a.animated-button:visited:hover {
+	color: rgb(0, 0, 0);
+	text-shadow: none;
+}
+a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+	height: 450%;
+}
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: #762662;
+	font-size:14px;
+	border-radius: 0;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+/* Victoria Buttons */
+a.animated-button.victoria-one {
+	border: 2px solid #D24D57;
+}
+a.animated-button.victoria-one:after {
+	background: #857d7d;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+}
+a.animated-button.victoria-two {
+	border: 2px solid rgb(2, 0, 0);
+}
+a.animated-button.victoria-two:after {
+	background: rgb(243, 250, 250);
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(25deg);
+}
+
+
+
+    </style>
+    {% endblock %}
