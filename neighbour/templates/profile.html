@@ -1,0 +1,133 @@
+{% extends 'base.html'%} {% load bootstrap4 %} {% load staticfiles %} {{form.media}} {% block content %}
+<a href="/logout" class="btn btn-outline-danger" style="text-decoration:none;">Logout</a>
+<div class="text-right">
+  <div class="text"><button class='btn btn-outline-success' data-toggle="modal" data-target="#profile"> Edit profile</button></div>
+</div>
+<div class="modal fade" id="profile" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div style="font-size: 20px; font-family: 'Mali', cursive;" class="modal-content">
+      <div class="modal-header">
+        <h2 class="text-center">EDIT PROFILE </h2>
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+      <div class="modal-body">
+        <form action="{%url 'profile'%}" method="post" enctype="multipart/form-data">
+          {%csrf_token%} {% bootstrap_form image_form %}
+          <strong><em><p style="color:green">N/B:You will only contribute to the neighbourhood you join here</p></em></strong>
+          <input type="submit" class="btn btn-outline-primary" value="Post">
+        </form>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</div>
+<div class="container">
+  <div class="text-right">
+
+  </div>
+
+  <div class="row">
+    {% if user.profile.email %}
+    <div class="col-md-4">
+
+
+      <div class="card border-secondary">
+        <div class="card-header">
+
+
+          <p style="width:100%; padding-left:6px;">Name:{{user.username | upper}}</p>
+
+          <p style="width:100%; padding-left:6px;">Hood:{{user.profile.neighbourhood}}</p>
+        </div>
+        <div class="card-footer">
+          <div class="text-center">
+
+            <img class="rounded-circle img-responsive" width="170" height="170" src="{{user.profile.pro_photo.url}}" alt="Add Profile picture">
+
+
+
+          </div>
+          <br><br>
+
+          <p style="width:100%; padding-left:6px;">Bio:{{user.profile.bio | title}}</p>
+          <p style="width:100%; padding-left:6px;">Email:{{user.profile.email}}</p>
+          <p style="width:100%; padding-left:6px;">Location:{{user.profile.neighbourhood.location | title}}</p>
+        </div>
+      </div>
+    </div>
+
+    {% else %}
+    <div class="col-md-4">
+
+
+      <div class="card border-secondary">
+        <div class="card-header">
+
+
+          <p style="width:100%; padding-left:6px;">Name:{{user.username | upper}}</p>
+
+          <p style="width:100%; padding-left:6px;">Hood:Random</p>
+        </div>
+        <div class="card-footer">
+          <div class="text-center">
+
+            <img class="rounded-circle img-responsive" width="170" height="170" src="http://icons-for-free.com/free-icons/png/512/1287507.png"
+              size="">
+
+
+          </div>
+          <br><br>
+
+          <p style="width:100%; padding-left:6px;">Bio:{{user.profile.bio | title}}</p>
+          <p style="width:100%; padding-left:6px;">Email:anonymous@gmail.com</p>
+          <p style="width:100%; padding-left:6px;">Location:Random</p>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <div class="col-md-8">
+      <div class="text-center">
+        {% if biz %}
+        <h1>Businesses I have created</h1>
+        {% else %}
+        <h1>I have not created any business yet.</h1>
+        {% endif %}
+      </div>
+
+      <div class="row">
+
+        {% for biz in biz %}
+        <div class="col-md-4">
+
+          <div class="card border-secondary">
+
+            <div class="card-footer">
+
+              <p> <strong>{{biz.name}}</strong> </p>
+              <p> {{biz.description}} </p>
+              <p> {{biz.email}} </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
+{% endblock %}
+
+
+
+</div>

@@ -1,0 +1,74 @@
+{% extends 'base.html'%} {% load bootstrap4 %} {% load staticfiles %} {{form.media}}
+
+ {% block content %}
+    
+ <div class="container">
+ <div class="text-right">
+    
+   </div>
+
+        <div class="row">
+       
+          <div class="col-md-4">
+     
+           
+      <div class="card border-secondary">
+        <div class="card-header">
+          
+
+            <p style="width:100%; padding-left:6px;">Name:{{profile.user.username}}</p>
+          
+            <p style="width:100%; padding-left:6px;">Hood:{{profile.neighbourhood}}</p>
+        </div>
+        <div class="card-footer">
+          <div class="text-center">
+             
+              <img class="rounded-circle img-responsive" width="170" height="170" src="{{profile.pro_photo.url}}" alt="Add Profile picture">
+             
+
+     
+      </div>
+            <br><br>    
+            
+             <p style="width:100%; padding-left:6px;">Bio:{{profile.bio | title}}</p>
+             <p style="width:100%; padding-left:6px;">Email:{{profile.email}}</p>
+             <p style="width:100%; padding-left:6px;">Location:{{profile.neighbourhood.location | title}}</p>
+            </div>
+          </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="text-center">
+          {% if biz %}
+          <h1>Businesses created by {{profile.user.username}}</h1>
+          {% else %}
+          <h1>{{profile.user.username}} has not created any business yet.</h1>
+          {% endif %}
+        </div>
+
+        <div class="row">
+
+          {% for biz in biz %}
+          <div class="col-md-4">
+
+            <div class="card border-secondary">
+              
+              <div class="card-footer">
+                
+            <p>   <strong>{{biz.name}}</strong>  </p>  
+            <p> {{biz.description}} </p>
+               <p> {{biz.email}} </p>
+              </div>
+               </div>
+                </div>
+          {% endfor %}
+        </div>
+      </div>
+      </div>            
+  <hr>
+</div>
+ {% endblock %}
+
+ 
+
+</div>
