@@ -1,0 +1,49 @@
+{% load bootstrap4 %}
+{% include 'material/includes/material_css.html' %}
+{% include 'material/includes/material_js.html' %}
+{% load material_form %}
+{% block styles %} {% bootstrap_css %}
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <!-- Empty div -->
+    <div class="col-md-4">
+
+        </div>
+    <div class="col-md-4">
+     
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3 class="text-center">Sign In</h3>
+        </div>
+        <div class="panel-body">
+            {% if form.errors %}
+            <p style="color:rgb(77, 63, 63);"> Password or Username is incorrect </p>
+          {% endif %}
+          <form  action="/accounts/login/" method="post">
+            {% csrf_token %}
+            {% form form=form %}{% endform %}
+
+            <div class="text-center">
+                <button type="submit" name="_submit" class="btn">Login</button>
+            </div>
+            <div class="section">
+                <p class="forgot">Don't have an account? <a href="/signup">Sign-Up</a></p>
+            </div>
+            <input type="hidden" name="next" value="{{next}}">
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- empty div -->
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+{% endblock %}
