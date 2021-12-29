@@ -1,0 +1,17 @@
+{% extends 'base.html'%} {% load bootstrap4 %} {% load staticfiles %} {{form.media}}
+
+{% block content %} {{ block.super }}
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <h2 class="text-center">
+You are about to add a new business
+        </h2>
+    <form action="{%url 'biz'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%} 
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-success btn-lg" value="Post">
+    </form>
+</div>
+    {% endblock %}
