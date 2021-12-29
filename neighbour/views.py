@@ -81,8 +81,6 @@ def profile(request):
             return render(request, 'profile.html', {"image_form": image_form,"biz":biz,"profile":profile,"neighbour":neighbour,"pr":pr})
     return render(request, 'profile.html', {"image_form": image_form,"biz":biz,"profile":profile,"neighbour":neighbour})
 
-
-
 def create(request):
     area = Neighbour.objects.all()
     current_user = request.user
