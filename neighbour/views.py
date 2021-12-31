@@ -1,3 +1,4 @@
+from django.db.models.query import Prefetch
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -78,7 +79,7 @@ def profile(request):
             image_form.save()
         else:
             image_form = ProfileForm()
-            return render(request, 'profile.html', {"image_form": image_form,"biz":biz,"profile":profile,"neighbour":neighbour,"pr":pr})
+            return render(request, 'profile.html', {"image_form": image_form,"biz":biz,"profile":profile,"neighbour":neighbour,"pr":Prefetch})
     return render(request, 'profile.html', {"image_form": image_form,"biz":biz,"profile":profile,"neighbour":neighbour})
 
 def create(request):
