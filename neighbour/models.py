@@ -10,7 +10,7 @@ class Neighbour(models.Model):
     occupants = models.IntegerField(null=True)
     police_dept = models.IntegerField(default='eg 999,269')
     health_dept = models.IntegerField(null=True)
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(User, null=True,on_delete=models.CASCADE)
     objects = models.Manager()
     # Admin Foreign key
     def __str__(self):
@@ -62,8 +62,8 @@ class Profile(models.Model):
     name = models.CharField(max_length =30,null=True)
     location = models.CharField(max_length =30,null=True)
     email = models.EmailField(max_length =50,null=True)
-    neighbourhood = models.ForeignKey(Neighbour, null=True)
-    bio = models.CharField(max_length =150,default='Hi, I am using Hoodwatch')
+    neighbourhood = models.ForeignKey(Neighbour, null=True,on_delete=models.CASCADE)
+    bio = models.CharField(max_length =150,default='Hi, I am using neighbourloop')
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile',null=True)
     
     def __str__(self):
@@ -81,8 +81,8 @@ class Business(models.Model):
     name = models.CharField(max_length =30,null=True)
     description = models.CharField(max_length =130,null=True)
     email = models.EmailField(max_length =50,null=True)
-    user = models.ForeignKey(User, null=True)
-    neighbourhood = models.ForeignKey(Neighbour, null=True)
+    user = models.ForeignKey(User, null=True,on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey(Neighbour, null=True,on_delete=models.CASCADE)
  
     objects = models.Manager()
     def __str__(self):
@@ -124,8 +124,8 @@ class Business(models.Model):
 
 class Post(models.Model):
     post = models.CharField(max_length =130,null=True)
-    user = models.ForeignKey(User, null=True)
-    neighbourhood = models.ForeignKey(Neighbour,related_name='post',null=True)
+    user = models.ForeignKey(User, null=True,on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey(Neighbour,related_name='post',null=True,on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['id']

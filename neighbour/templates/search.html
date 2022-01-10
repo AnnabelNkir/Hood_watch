@@ -1,4 +1,4 @@
-{% extends 'base.html'%} {% load bootstrap4 %} {% load staticfiles %} {{form.media}} {% block content %}
+{% extends 'base.html'%} {% load bootstrap4 %} {% load static %} {{form.media}} {% block content %}
 <div class="container">
     {% if searched_business %}
     <h1 class="text-center">Found {{searched_business|length}} related search for {{message}}</h1>
