@@ -63,7 +63,7 @@ class Profile(models.Model):
     location = models.CharField(max_length =30,null=True)
     email = models.EmailField(max_length =50,null=True)
     neighbourhood = models.ForeignKey(Neighbour, null=True,on_delete=models.CASCADE)
-    bio = models.CharField(max_length =150,default='Hi, I am using neighbourloop')
+    bio = models.CharField(max_length =150,default='Hi, I am using Hoodwatch')
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile',null=True)
     
     def __str__(self):

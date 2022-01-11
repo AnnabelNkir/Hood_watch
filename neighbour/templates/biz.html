@@ -1,17 +1,15 @@
-{% extends 'base.html'%} {% load bootstrap4 %} {% load static %} {{form.media}}
+{% extends 'base.html'%} {% load bootstrap4 %} {% load static%} {{form.media}}
 
 {% block content %} {{ block.super }}
-    <div class="container">
-        <br>
-        <br>
-        <br>
-        <h2 class="text-center">
-You are about to add a new business
-        </h2>
-    <form action="{%url 'biz'%}" method="post" enctype="multipart/form-data">
-        {%csrf_token%} 
-        {% bootstrap_form form %}
-        <input type="submit" class="btn btn-success btn-lg" value="Post">
-    </form>
+<br><br>
+<div class="container">
+<div class="text-center">
+ <h2>You are about to  create a new hood</h2>
 </div>
-    {% endblock %}
+  <form action="{%url 'create'%}" method="post" enctype="multipart/form-data">
+   {%csrf_token%} 
+   {% bootstrap_form form %}
+   <input type="submit" class="btn btn-success btn-lg" value="Post">
+ </form>
+</div>
+{% endblock %}

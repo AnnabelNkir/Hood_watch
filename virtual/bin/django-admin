@@ -1,4 +1,4 @@
-#!/home/moringa/Hoodwatch/virtual/bin/python3
+#!/home/moringa/Hoodwatch/virtual/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -1,7 +1,4 @@
 {% load bootstrap4 %}
-{% include 'material/includes/material_css.html' %}
-{% include 'material/includes/material_js.html' %}
-{% load material_form %}
 {% block styles %} {% bootstrap_css %}
 {% endblock %}
 {% block content %}
@@ -24,7 +21,6 @@
           {% endif %}
           <form  action="/accounts/login/" method="post">
             {% csrf_token %}
-            {% form form=form %}{% endform %}
 
             <div class="text-center">
                 <button type="submit" name="_submit" class="btn">Login</button>

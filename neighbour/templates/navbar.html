@@ -3,9 +3,8 @@
       <!-- Navbar Logo -->
   
       <div class="logo">
-        <a href="/"><img src="http://pluspng.com/img-png/png-neighbors-neighbors-empowering-neighborhoods-337.png" alt="" height="70"
+        <a href="/"><img src="https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" height="70"
             width="220"> </a>
-        <!-- Logo Placeholder for Inlustration -->
       </div>
   
       <ul id="menu">
@@ -21,7 +20,7 @@
           </a>
         </li>
         <li><a href="/">Home</a></li>
-        <li><a href="/create">Neighborhood</a></li>
+        <li><a href="/create">Neighbourhood</a></li>
         <li><a href="/biz">Businesses</a></li>
         {% if user.is_authenticated %}
         <li><a href="/profile/{{user.username}}">{{user.username}}</a></li>
@@ -41,7 +40,7 @@
   
   
   <div class="overlay-menu">
-    <ul id="menu" style="background-color:darkslateblue">
+    <ul id="menu" style="background-color:rgb(139, 61, 135)">
       <li><a href="/">Home</a></li>
       <li><a href="/create">Neighborhood</a></li>
       <li><a href="/biz">Businesses</a></li>
@@ -172,7 +171,6 @@
       -webkit-transition: all 1s ease;
     }
   
-    /* Animated Bottom Line */
     #navbar li a:before,
     #navbar li a:after {
       content: '';
@@ -191,7 +189,6 @@
     #navbar li a:after {
       background: rgb(197, 175, 175);
       right: 0;
-      /* transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1); */
     }
   
     #navbar li a:hover:before {
@@ -240,8 +237,7 @@
         top: -8px;
         height: 2px;
         width: 20px;
-        /*     -webkit-transition: top 0.2s ease 0.3s;
-      transition: top 0.2s ease 0.3s; */
+    
         -webkit-transition: 0.3s width 0.4s;
         transition: 0.3s width 0.4s;
       }
@@ -259,7 +255,6 @@
         transition: 0.3s width 0.4s;
       }
   
-      /* Bars Shadows */
       .icon-bars.overlay {
         background: rgb(97, 114, 129);
         background: rgb(209, 221, 230);
@@ -421,7 +416,7 @@
   
     .overlay-menu li a:hover,
     .overlay-menu li a:active {
-      color: rgb(212, 21, 164);
+      color: rgb(77, 6, 59);
       -webkit-transition: color 0.3s ease;
       transition: color 0.3s ease;
     }
