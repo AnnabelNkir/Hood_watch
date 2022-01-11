@@ -65,7 +65,8 @@ class Profile(models.Model):
     neighbourhood = models.ForeignKey(Neighbour, null=True,on_delete=models.CASCADE)
     bio = models.CharField(max_length =150,default='Hi, I am using Hoodwatch')
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile',null=True)
-    
+    objects = models.Manager()
+
     def __str__(self):
         return self.name
 
